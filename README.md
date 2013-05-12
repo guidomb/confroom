@@ -1,2 +1,0 @@
-# confroom
-### a Sails application
