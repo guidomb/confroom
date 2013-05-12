@@ -1,8 +1,24 @@
 extends ../layouts/layout
 
 block content
-  div
-    form(action='/sessions', method='post')
-      input(id='name', name='name', type='text', value='', placeholder='Enter your name')
-      button="Enviar"
 
+div
+  if typeof errors !== 'undefined'
+    each error in errors
+      div= error
+
+div
+  form(action='/sessions', method='post')
+    div
+      label(for='title')='Title'
+      input(id='title', name='title', type='text', value="#{(typeof session !== 'undefined') ? session.title : ''}", placeholder="Enter the session's title")
+    
+    div
+      label(for='description')='Description'
+      textarea(id='description', name='description', rows=3)= (typeof session !== 'undefined') ? session.description : ''
+
+    div
+      label(for='slides-url')='Slides URL'
+      input(id='slides-url', name='slidesUrl', type='text', value='#{(typeof session !== 'undefined') ? session.slidesUrl : ''}', placeholder="Enter the session slide's URL")
+
+    button="Create"

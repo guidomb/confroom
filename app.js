@@ -6,7 +6,8 @@ var express   = require('express'),
     resource  = require('express-resource'),
     http      = require('http'),
     path      = require('path'),
-    envs      = require('./config/environments');
+    envs      = require('./config/environments'),
+    mongoose  = require('mongoose');
 
 // express initialization
 var app = express();
@@ -25,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 if (config.errorHandler) {
   app.use(express.errorHandler());
 }
+
+mongoose.connect('mongodb://localhost/confroom' + app.get('env'));
 
 // routes
 require('./config/routes')(app)
