@@ -1,0 +1,1 @@
+var confroom = angular.module('confroom', []);
